@@ -18,8 +18,8 @@ under the License.
 -->
 
 # Changelog
-- [Enabled `DASHBOARD_RBAC` by default via env variable](/commit/3d09211c277feac04a48076822bffa6423f8c957).
-- [Added API route `/security/register` to add new users - requires `Admin` role](/commit/4d1399b3110d83ce0e0391906a03cec140ad6c6a).
+- Enabled `DASHBOARD_RBAC` by default via env variable: ecfb7ce
+- Added API route `/security/register` to add new users (requires `Admin` role): 4d1399b
 
 # TODO
 - Add API route to add new roles
