@@ -17,6 +17,14 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+# Changelog
+- [Enabled `DASHBOARD_RBAC` by default via env variable](/commit/3d09211c277feac04a48076822bffa6423f8c957).
+- [Added API route `/security/register` to add new users - requires `Admin` role](/commit/4d1399b3110d83ce0e0391906a03cec140ad6c6a).
+
+# TODO
+- Add API route to add new roles
+- Add API route to add role to user
+
 # Superset
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
