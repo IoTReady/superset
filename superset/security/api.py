@@ -84,4 +84,4 @@ class SecurityRestApi(BaseApi):
             role,
             password=payload['password'],
         )
-        return self.response(200, result=user.id)
+        return self.response(200, id=user.id)
