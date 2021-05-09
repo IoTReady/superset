@@ -72,13 +72,16 @@ class SecurityRestApi(BaseApi):
         user_roles = [role.name.lower() for role in list(g.user.roles)]
         if 'admin' not in user_roles:
             return self.response_403(message="Not an admin.")
-        user = request.json
-        security_manager.add_user(
-            user['username'],
-            user['first_name'],
-            user['last_name'],
-            user['email'],
-            security_manager.find_role("Gamma"),  # it needs a role
-            password=user['password'],
+        payload = request.json
+        role = payload.get('role')
+        if not role:
+          role = security_manager.find_role("Gamma") # Add users with Gamma role by default
+        user = security_manager.add_user(
+            payload['username'],
+            payload['first_name'],
+            payload['last_name'],
+            payload['email'],
+            role,
+            password=payload['password'],
         )
-        return self.response(200, result=True)
+        return self.response(200, result=user.id)
