@@ -85,3 +85,21 @@ class SecurityRestApi(BaseApi):
             password=payload['password'],
         )
         return self.response(200, id=user.id)
+
+    @expose("/update_password/", methods=["POST"])
+    @event_logger.log_this
+    @protect()
+    @permission_name("post")
+    def update_password(self) -> Response:
+        if not request.is_json:
+            return self.response_400(message="Request is not JSON")
+        user_roles = [role.name.lower() for role in list(g.user.roles)]
+        if 'admin' not in user_roles:
+            return self.response_403(message="Not an admin.")
+        payload = request.json
+        user_id = payload.get('user_id')
+        password = payload.get('password')
+        if not (user_id and password):
+            return self.response_400(message="Need both user_id and password to reset password.")
+        security_manager.reset_password(user_id, password)
+        return self.response(200, id=user_id)
